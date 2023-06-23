@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import { fetchDigitalCurrencyRankings, DigitalCurrencyRankings } from '../apis/fetchDigitalCurrencyRankings';
 
-const response = await fetch(`${import.meta.env.API_BASE_URL}/api/digital-currency-rankings?limit=10&sort=asc`);
-const digitalCurrencyRankings = await response.json();
+const digitalCurrencyRankings = await fetchDigitalCurrencyRankings();
 ---
 
 <Layout title="DCI">
@@ -11,7 +11,7 @@ const digitalCurrencyRankings = await response.json();
 		<h1><span class="text-gradient">Digital Currency Insight</span></h1>
 		<ul role="list" class="link-card-grid">
 			{
-				digitalCurrencyRankings.data.map((digitalCurrency) => (
+				digitalCurrencyRankings.data.map((digitalCurrency: DigitalCurrencyRankings) => (
 					<Card
 						href={`/detail/${digitalCurrency.symbol.toLowerCase()}/`}
 						name={digitalCurrency.name}
