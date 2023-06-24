@@ -4,22 +4,18 @@ export interface Props {
 	name: string;
 	rank: number;
 	price: number;
+	marketCap?: string;
 }
 
-const { href, name, rank, price } = Astro.props;
+const { href, name, rank, price, marketCap } = Astro.props;
 ---
 
 <li class="link-card">
 	<a href={href}>
-		<h2>
-			{name}
-		</h2>
-		<p>
-			Rank: {rank}
-		</p>
-		<p>
-			Price: {price}
-		</p>
+		<h2>{name}</h2>
+		<p>Rank: {rank}</p>
+		<p>Price: {price}</p>
+		{ marketCap && <p>MarketCap: {marketCap}</p> }
 	</a>
 </li>
 <style>
