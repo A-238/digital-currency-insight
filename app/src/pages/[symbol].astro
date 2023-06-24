@@ -1,19 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
 import { fetchDigitalCurrencyRankings, DigitalCurrencyRankings } from '../apis/fetchDigitalCurrencyRankings';
 
 export async function getStaticPaths({}) {
 	const digitalCurrencyRankings = await fetchDigitalCurrencyRankings();
 	
 	return digitalCurrencyRankings.data.map((digitalCurrency: DigitalCurrencyRankings) => {
-		return { params: { symbol: digitalCurrency.symbol.toLowerCase() }, props: { digitalCurrency } }
+		return { 
+			params: { symbol: digitalCurrency.symbol.toLowerCase() },
+			props: { digitalCurrency }
+		}
 	})
 }
+
+const { digitalCurrency } = Astro.props
 ---
 
 <Layout title="DCI detail">
 	<main>
-		詳細ページ
+		<h1><span class="text-gradient">About { digitalCurrency.name}</span></h1>
+		<Card
+			href={''}
+			name={digitalCurrency.name}
+			rank={digitalCurrency.rank}
+			price={digitalCurrency.price}
+			marketCap={digitalCurrency.marketCap}
+		/>
 	</main>
 </Layout>
 
