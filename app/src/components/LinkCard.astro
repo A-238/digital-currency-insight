@@ -1,4 +1,6 @@
 ---
+import LegalCurrencyUtil from '../utils/LegalCurrencyUtil';
+
 export interface Props {
 	href: string;
 	name: string;
@@ -11,7 +13,7 @@ const { href, name, marketCap } = Astro.props;
 <li class="link-card">
 	<a href={href}>
 		<h2>{name}</h2>
-		<p>MarketCap: {marketCap}</p>
+		<p>MarketCap: {LegalCurrencyUtil.format(marketCap, 'USD')}</p>
 	</a>
 </li>
 <style>

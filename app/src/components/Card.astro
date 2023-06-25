@@ -1,10 +1,12 @@
 ---
+import LegalCurrencyUtil from '../utils/LegalCurrencyUtil';
+
 export interface Props {
 	digitalCurrency: {
 		name: string;
 		rank: number;
 		price: number;
-		marketCap: string;
+		marketCap: number;
 	}
 }
 
@@ -15,8 +17,10 @@ const { name, rank, price, marketCap } = Astro.props.digitalCurrency;
 	<div>
 		<h2>{name}</h2>
 		<p>Rank: {rank}</p>
-		<p>Price: {price}</p>
-		<p>MarketCap: {marketCap}</p>
+		<p>Price: {LegalCurrencyUtil.format(price, 'USD')}</p>
+		<p>MarketCap: {LegalCurrencyUtil.format(marketCap, 'USD')}</p>
+		<p>Price(JPY): {LegalCurrencyUtil.format(price, 'JPY')}</p>
+		<p>MarketCap(JPY): {LegalCurrencyUtil.format(marketCap, 'JPY')}</p>
 	</div>
 </li>
 <style>
