@@ -1,26 +1,21 @@
 ---
 export interface Props {
-	digitalCurrency: {
-		name: string;
-		rank: number;
-		price: number;
-		marketCap: string;
-	}
+	href: string;
+	name: string;
+	marketCap: number;
 }
 
-const { name, rank, price, marketCap } = Astro.props.digitalCurrency;
+const { href, name, marketCap } = Astro.props;
 ---
 
-<li class="card">
-	<div>
+<li class="link-card">
+	<a href={href}>
 		<h2>{name}</h2>
-		<p>Rank: {rank}</p>
-		<p>Price: {price}</p>
 		<p>MarketCap: {marketCap}</p>
-	</div>
+	</a>
 </li>
 <style>
-	.card {
+	.link-card {
 		list-style: none;
 		display: flex;
 		padding: 0.25rem;
@@ -33,7 +28,7 @@ const { name, rank, price, marketCap } = Astro.props.digitalCurrency;
 		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 	}
 
-	.card > div {
+	.link-card > a {
 		width: 100%;
 		text-decoration: none;
 		line-height: 1.4;
@@ -52,5 +47,12 @@ const { name, rank, price, marketCap } = Astro.props.digitalCurrency;
 		margin-top: 0.5rem;
 		margin-bottom: 0;
 		color: #444;
+	}
+	.link-card:is(:hover, :focus-within) {
+		background-position: 0;
+		background-image: var(--accent-gradient);
+	}
+	.link-card:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent));
 	}
 </style>
