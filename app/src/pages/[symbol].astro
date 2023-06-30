@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import { fetchDigitalCurrencyRankings, DigitalCurrencyRankings } from '../apis/fetchDigitalCurrencyRankings';
+import { fetchDigitalCurrencyRankings, DigitalCurrencyRanking } from '../apis/fetchDigitalCurrencyRankings';
 
 export async function getStaticPaths() {
 	const digitalCurrencyRankings = await fetchDigitalCurrencyRankings();
 	
-	return digitalCurrencyRankings.data.map((digitalCurrency: DigitalCurrencyRankings) => {
+	return digitalCurrencyRankings.data.map((digitalCurrency: DigitalCurrencyRanking) => {
 		return { 
 			params: { symbol: digitalCurrency.symbol.toLowerCase() },
 			props: { digitalCurrency }

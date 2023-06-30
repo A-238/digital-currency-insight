@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import LinkCard from '../components/LinkCard.astro';
-import { fetchDigitalCurrencyRankings, DigitalCurrencyRankings } from '../apis/fetchDigitalCurrencyRankings';
+import { fetchDigitalCurrencyRankings, DigitalCurrencyRanking } from '../apis/fetchDigitalCurrencyRankings';
 
 const digitalCurrencyRankings = await fetchDigitalCurrencyRankings();
 ---
@@ -11,7 +11,7 @@ const digitalCurrencyRankings = await fetchDigitalCurrencyRankings();
 		<h1><span class="text-gradient">Digital Currency Insight</span></h1>
 		<ul role="list" class="link-card-grid">
 			{
-				digitalCurrencyRankings.data.map((digitalCurrency: DigitalCurrencyRankings) => (
+				digitalCurrencyRankings.data.map((digitalCurrency: DigitalCurrencyRanking) => (
 					<LinkCard
 						href={`/${digitalCurrency.symbol.toLowerCase()}/`}
 						name={digitalCurrency.name}
