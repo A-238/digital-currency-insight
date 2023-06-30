@@ -1,4 +1,4 @@
-export interface DigitalCurrencyRankings {
+export interface DigitalCurrencyRanking {
     rank: number
     symbol: string
     name: string
@@ -7,7 +7,7 @@ export interface DigitalCurrencyRankings {
 }
 
 export interface ApiResults {
-    data: DigitalCurrencyRankings[]
+    data: DigitalCurrencyRanking[]
 }
 
 /**
